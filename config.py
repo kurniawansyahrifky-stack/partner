@@ -1,8 +1,10 @@
-API_ID = 33370509
-API_HASH = "669af6caebf2aca264b16cf8b40d37b2"
-BOT_TOKEN = "ISI_TOKEN_LU"
+import os
 
-API_URL = "http://127.0.0.1:5000/get"
+API_ID = int(os.getenv("API_ID"))
+API_HASH = os.getenv("API_HASH")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+
+API_URL = os.getenv("API_URL", "http://127.0.0.1:5000/get")
 
 TARGET_CHATS = [-1002896045673]
 FORCE_GROUP = -1002896045673
