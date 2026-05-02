@@ -2,19 +2,18 @@ import asyncio
 import random
 import time
 import html
-import re
 
 from collections import deque
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import FloodWait
 
-from bot.client import app
-from bot.utils.state import (
+from main import app
+from utils.state import (
     manual_setup, stop_flag, manual_messages,
-    auto_data, custom_buttons, last_activity
+    custom_buttons, last_activity
 )
-from bot.utils.helpers import fancy_name
+from utils.helpers import fancy_name
 
 
 # ================= CALLBACK DURASI =================
@@ -42,22 +41,19 @@ async def handle_durasi(client, query):
 
     setup = manual_setup[chat_id]
     msg = setup["msg"]
-    mode = setup["mode"]
 
     await query.edit_message_text("🚀 Tagall manual dimulai...")
 
-    # 🔥 masuk ke worker async
     asyncio.create_task(
-        run_tagall_manual(client, chat_id, msg, mode, duration)
+        run_tagall_manual(client, chat_id, msg, duration)
     )
 
 
 # ================= TAGALL WORKER =================
-async def run_tagall_manual(client, chat_id, msg, mode, duration):
+async def run_tagall_manual(client, chat_id, msg, duration):
     stop_flag[chat_id] = False
     manual_messages[chat_id] = []
 
-    # ================= GET MEMBERS =================
     members = {}
 
     try:
@@ -113,10 +109,10 @@ async def run_tagall_manual(client, chat_id, msg, mode, duration):
             ])
 
         try:
+            # ❌ FIX: parse_mode DIHAPUS
             sent_msg = await client.send_message(
                 chat_id,
                 final_text,
-                parse_mode="html",
                 reply_markup=keyboard
             )
 
@@ -129,7 +125,6 @@ async def run_tagall_manual(client, chat_id, msg, mode, duration):
         except FloodWait as e:
             print(f"⚠️ FLOOD → WAIT {e.value}s")
 
-            # balikin batch ke depan queue
             for uid in reversed(batch):
                 queue.appendleft(uid)
 
@@ -140,7 +135,6 @@ async def run_tagall_manual(client, chat_id, msg, mode, duration):
             print("SEND ERROR:", e)
             await asyncio.sleep(2)
 
-        # ================= ADAPTIVE =================
         if sent > 50:
             current_delay = 3.5
         if sent > 200:
@@ -149,7 +143,11 @@ async def run_tagall_manual(client, chat_id, msg, mode, duration):
             current_delay = 6
 
     # ================= DONE =================
-    text_done = "⛔ Tagall dihentikan" if stopped else f"✅ Tagall selesai\n👥 Total tag: {sent}"
+    text_done = (
+        "⛔ Tagall dihentikan"
+        if stopped else
+        f"✅ Tagall selesai\n👥 Total tag: {sent}"
+    )
 
     keyboard_clear = InlineKeyboardMarkup([
         [InlineKeyboardButton("🧹 CLEAR CHAT", callback_data="manual_clear")]

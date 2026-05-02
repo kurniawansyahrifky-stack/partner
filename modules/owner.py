@@ -1,16 +1,16 @@
 from pyrogram import filters
-from bot.client import app
+from main import app
 from config import OWNER_IDS
 
 import time
 import os
 import zipfile
 
-from bot.utils.files import (
+from utils.files import (
     load_setting, save_setting,
     load_partner, save_partner
 )
-from bot.utils.helpers import normalize_link, get_group_name
+from utils.helpers import normalize_link, get_group_name
 
 
 # ================= LIVECHAT =================

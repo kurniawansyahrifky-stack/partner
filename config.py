@@ -1,22 +1,30 @@
 import os
+from dotenv import load_dotenv
 
-API_ID = int(os.getenv("API_ID"))
-API_HASH = os.getenv("API_HASH")
-BOT_TOKEN = os.getenv("BOT_TOKEN")
+# ================= ENV SAFE =================
+API_ID = int(os.getenv("API_ID", "0"))
+API_HASH = os.getenv("API_HASH", "")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "")
 
 API_URL = os.getenv("API_URL", "http://127.0.0.1:5000/get")
 
-TARGET_CHATS = [-1002896045673]
-FORCE_GROUP = -1002896045673
-FORCE_LINK = "https://t.me/ofcnoirfleur"
+# ================= GROUP =================
+TARGET_CHATS = [-1002101188966]
+FORCE_GROUP = -1002101188966
+FORCE_LINK = "https://t.me/tongkrongan_gaje"
 
+# ================= OWNER =================
 OWNER_IDS = [8209644174, 5744453710]
 
-PARTNER_FILE = "partner.json"
-SETTING_FILE = "setting.json"
-QUEUE_FILE = "queue.json"
-AUTO_TAG_FILE = "autotag.json"
-BUTTON_FILE = "buttons.json"
+# ================= FILE PATH =================
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-BACKUP_DIR = "backups"
-SERVICE_NAME = "noirbot"
+PARTNER_FILE = os.path.join(BASE_DIR, "partner.json")
+SETTING_FILE = os.path.join(BASE_DIR, "setting.json")
+QUEUE_FILE = os.path.join(BASE_DIR, "queue.json")
+AUTO_TAG_FILE = os.path.join(BASE_DIR, "autotag.json")
+BUTTON_FILE = os.path.join(BASE_DIR, "buttons.json")
+
+# ================= OTHER =================
+BACKUP_DIR = os.path.join(BASE_DIR, "backups")
+SERVICE_NAME = "partnerbot"

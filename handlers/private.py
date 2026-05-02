@@ -2,10 +2,10 @@ import re
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-from bot.config import *
-from bot.utils.helpers import normalize_link
-from bot.utils.storage import load_partner, load_limit, get_today_wib
-from bot.workers.tagall import task_queue, user_queue, WORKER_ACTIVE
+from config import *
+from utils.helpers import normalize_link
+from utils.storage import load_partner, load_limit, get_today_wib
+from workers.tagall import task_queue, user_queue, WORKER_ACTIVE
 
 
 # ================= CEK JOIN =================

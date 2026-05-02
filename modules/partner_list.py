@@ -1,9 +1,9 @@
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-from bot.client import app
+from client import app
 from config import OWNER_IDS
-from bot.utils.files import load_partner
+from utils.files import load_partner
 
 PAGE_SIZE = 10
 

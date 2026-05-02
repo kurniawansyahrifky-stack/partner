@@ -1,12 +1,12 @@
 from pyrogram import filters
 from pyrogram.errors import FloodWait
 
-from bot.client import app
+from main import app
 from config import OWNER_IDS
 
-from bot.utils.files import load_setting, save_setting, load_partner
-from bot.utils.state import stop_flag, manual_setup, manual_messages
-from bot.modules.tagall_worker import handle_durasi
+from utils.files import load_setting, save_setting, load_partner
+from utils.state import stop_flag, manual_setup, manual_messages
+from modules.tagall_worker import handle_durasi
 
 import asyncio
 

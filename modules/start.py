@@ -4,9 +4,9 @@ import os
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-from bot.client import app
-from bot.utils.files import load_setting, save_setting
-
+from client import app
+from utils.files import load_setting, save_setting
+from utils.helpers import fancy_name
 
 # ================= START =================
 @app.on_message(filters.command("start"))

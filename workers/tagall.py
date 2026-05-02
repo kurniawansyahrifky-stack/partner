@@ -6,9 +6,9 @@ from collections import deque
 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-from bot.utils.members import get_members
-from bot.utils.limit import load_limit, save_limit, get_today_wib
-from bot.utils.helpers import normalize_link
+from utils.members import get_members
+from utils.limit import load_limit, save_limit, get_today_wib
+from utils.helpers import normalize_link
 
 # ================= GLOBAL =================
 task_queue = asyncio.Queue()

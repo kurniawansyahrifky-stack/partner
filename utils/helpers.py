@@ -1,6 +1,9 @@
 import re
 import time
 
+def fancy_name(name: str):
+    return name.strip().title()
+
 # ================= LINK =================
 def normalize_link(link: str) -> str:
     if not link:

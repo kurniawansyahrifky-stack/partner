@@ -2,10 +2,10 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import FloodWait
 
-from bot.client import app
+from main import app
 from config import OWNER_IDS
 
-from bot.utils.files import load_setting, save_setting
+from utils.files import load_setting, save_setting
 
 import asyncio
 

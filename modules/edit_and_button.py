@@ -1,10 +1,10 @@
 from pyrogram import filters
-from bot.client import app
+from main import app
 from config import OWNER_IDS, TARGET_CHATS
 
-from bot.utils.files import load_partner, save_partner, save_buttons
-from bot.utils.helpers import normalize_link
-from bot.utils.state import custom_buttons
+from utils.files import load_partner, save_partner, save_buttons
+from utils.helpers import normalize_link
+from utils.state import custom_buttons
 
 import random
 
@@ -96,16 +96,4 @@ async def addbuttontag_cmd(client, message):
     )
 
 
-# ================= FANCY NAME =================
-def fancy_name(text):
-    fonts = [
-        ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
-         "𝑨𝑩𝑪𝑫𝑬𝑭𝑮𝑯𝑰𝑱𝑲𝑳𝑴𝑵𝑶𝑷𝑸𝑹𝑺𝑻𝑼𝑽𝑾𝑿𝒀𝒁abcdefghijklmnopqrstuvwxyz"),
-        ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
-         "𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩abcdefghijklmnopqrstuvwxyz"),
-        ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
-         "𝙰𝙱𝙲𝙳𝙴𝙵𝙶𝙷𝙸𝙹𝙺𝙻𝙼𝙽𝙾𝙿𝚀𝚁𝚂𝚃𝚄𝚅𝚆𝚇𝚈𝚉abcdefghijklmnopqrstuvwxyz"),
-    ]
 
-    normal, fancy = random.choice(fonts)
-    return text.translate(str.maketrans(normal, fancy))

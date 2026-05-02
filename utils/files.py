@@ -10,12 +10,16 @@ async def load_json(file, default):
     try:
         async with aiofiles.open(file, "r") as f:
             return json.loads(await f.read())
-    except:
+    except Exception as e:
+        print(f"[LOAD ERROR] {file}: {e}")
         return default
 
 async def save_json(file, data):
-    async with aiofiles.open(file, "w") as f:
-        await f.write(json.dumps(data, indent=2))
+    try:
+        async with aiofiles.open(file, "w") as f:
+            await f.write(json.dumps(data, indent=2))
+    except Exception as e:
+        print(f"[SAVE ERROR] {file}: {e}")
 
 
 # ================= SETTING =================
