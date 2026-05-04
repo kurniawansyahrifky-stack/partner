@@ -17,7 +17,3 @@ app = Client(
     bot_token=BOT_TOKEN
 )
 
-# ================= START =================
-if __name__ == "__main__":
-    logger.info("🚀 STARTING BOT...")
-    app.run()
